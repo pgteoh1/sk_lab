@@ -1,0 +1,3 @@
+timestamp,station,unit_id,voltage_v,current_a,temp_c
+2026-08-04T10:00:01,C,U3001,3.30,0.52,41.0
+2026-08-04T10:00:14,C,U3002,3.28,0.54,40.7

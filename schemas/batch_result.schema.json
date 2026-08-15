@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "required": ["generated_at", "files", "batch_verdict"],
+  "properties": {
+    "generated_at": { "type": "string" },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["file", "status", "row_count", "violations", "verdict"],
+        "properties": {
+          "file": { "type": "string" },
+          "status": { "enum": ["processed", "skipped"] },
+          "row_count": { "type": "integer" },
+          "violations": { "type": "object" },
+          "verdict": { "enum": ["CLEAN", "MINOR ISSUES", "NEEDS REVIEW", "N/A"] },
+          "skip_reason": { "type": "string" }
+        }
+      }
+    },
+    "batch_verdict": { "enum": ["CLEAN", "MINOR ISSUES", "NEEDS REVIEW"] }
+  }
+}

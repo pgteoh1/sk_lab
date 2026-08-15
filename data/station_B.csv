@@ -1,0 +1,5 @@
+data/station_B.csv
+timestamp,station,unit_id,voltage_v,current_a,temp_c,result
+2026-08-04T09:00:01,B,U2001,3.30,0.51,40.5,PASS
+2026-08-04T09:00:14,B,U2002,3.31,0.52,40.9,PASS
+2026-08-04T09:00:27,B,U2003,3.29,0.53,41.0,PASS
