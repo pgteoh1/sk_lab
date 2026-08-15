@@ -1,5 +1,7 @@
 """Batch data-quality check for all station CSVs in data/."""
+import argparse
 import json
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -156,7 +158,25 @@ def log_progress(csv_name, status):
 
 
 def main():
-    files = sorted(DATA_DIR.glob("*.csv"))
+    parser = argparse.ArgumentParser(description="Batch data-quality check for station CSVs.")
+    parser.add_argument(
+        "--station",
+        action="append",
+        metavar="NAME",
+        help="Station name to process (without .csv extension). "
+             "Can be repeated. If omitted, all files in data/ are processed.",
+    )
+    args = parser.parse_args()
+
+    if args.station:
+        files = []
+        for name in args.station:
+            matched = sorted(DATA_DIR.glob(f"{name}.csv"))
+            if not matched:
+                print(f"Warning: no file found for station '{name}' in {DATA_DIR}/", file=sys.stderr)
+            files.extend(matched)
+    else:
+        files = sorted(DATA_DIR.glob("*.csv"))
     already_processed = load_progress()
     batch_files = []
     any_needs_review = False
